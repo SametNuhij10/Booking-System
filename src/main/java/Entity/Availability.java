@@ -10,11 +10,10 @@ public class Availability {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer availabilityId;
+    private Long availabilityId;
 
     @Column(nullable = false)
-    private Integer providerId;
-
+    private Long providerId;
     @Column(nullable = false)
     private LocalDate date;
 
@@ -26,7 +25,7 @@ public class Availability {
 
     public Availability() {}
 
-    public Availability(Integer providerId, LocalDate date,
+    public Availability(Long providerId, LocalDate date,
                         LocalTime startTime, LocalTime endTime) {
         this.providerId = providerId;
         this.date = date;
@@ -34,11 +33,11 @@ public class Availability {
         this.endTime = endTime;
     }
 
-    public Integer getAvailabilityId() { return availabilityId; }
-    public void setAvailabilityId(Integer availabilityId) { this.availabilityId = availabilityId; }
+    public Long getAvailabilityId() { return availabilityId; }
+    public void setAvailabilityId(Long availabilityId) { this.availabilityId = availabilityId; }
 
-    public Integer getProviderId() { return providerId; }
-    public void setProviderId(Integer providerId) { this.providerId = providerId; }
+    public Long getProviderId() { return providerId; }
+    public void setProviderId(Long providerId) { this.providerId = providerId; }
 
     public LocalDate getDate() { return date; }
     public void setDate(LocalDate date) { this.date = date; }

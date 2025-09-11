@@ -34,9 +34,16 @@ public class ServiceCategoryRepository {
         return em.merge(category);
     }
 
+
     @Transactional
     public void delete(ServiceCategory category) {
-        ServiceCategory managed = em.contains(category) ? category : em.merge(category);
+        ServiceCategory managed;
+        if (em.contains(category)) {
+            managed=category;
+        }
+        else {
+            managed=em.merge(category);
+        }
         em.remove(managed);
     }
 }

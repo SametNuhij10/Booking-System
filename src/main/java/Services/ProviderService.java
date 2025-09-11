@@ -51,14 +51,13 @@ public class ProviderService {
                                         LocalTime startTime,
                                         LocalTime endTime) {
         Availability availability = new Availability(
-                providerId.intValue(),
+                providerId,
                 date,
                 startTime,
                 endTime
         );
         return availabilityRepository.create(availability);
     }
-
 
     @Transactional
     public void addWeeklyAvailability(Long providerId,
@@ -71,7 +70,7 @@ public class ProviderService {
         while (!d.isAfter(toDate)) {
             if (d.getDayOfWeek() == dayOfWeek) {
                 availabilityRepository.create(new Availability(
-                        providerId.intValue(), d, startTime, endTime
+                        providerId, d, startTime, endTime
                 ));
             }
             d = d.plusDays(1);

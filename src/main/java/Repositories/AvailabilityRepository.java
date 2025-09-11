@@ -36,7 +36,12 @@ public class AvailabilityRepository {
 
     @Transactional
     public void delete(Availability availability) {
-        Availability managed = em.contains(availability) ? availability : em.merge(availability);
+        Availability managed;
+        if (em.contains(availability)) {
+            managed = availability;
+        } else {
+            managed = em.merge(availability);
+        }
         em.remove(managed);
     }
 }

@@ -19,6 +19,7 @@
         <hibernate.version>6.5.2.Final</hibernate.version>
         <mysql.version>8.4.0</mysql.version>
         <hk2.version>3.0.5</hk2.version>
+        <jackson.version>2.15.2</jackson.version>
     </properties>
 
     <dependencies>
@@ -32,6 +33,13 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-json-jackson</artifactId>
             <version>${jersey.version}</version>
+        </dependency>
+
+        <!-- Jackson JSR310 for Java 8 Time support -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
         </dependency>
 
         <!-- Jersey ⇆ CDI bridge (required for @Inject in resources) -->
@@ -55,9 +63,9 @@
             <version>${weld.version}</version>
         </dependency>
         <dependency>
-                <groupId>jakarta.enterprise</groupId>
-                <artifactId>jakarta.enterprise.cdi-api</artifactId>
-                <version>${cdi.api.version}</version>
+            <groupId>jakarta.enterprise</groupId>
+            <artifactId>jakarta.enterprise.cdi-api</artifactId>
+            <version>${cdi.api.version}</version>
         </dependency>
 
         <!-- Injection API -->

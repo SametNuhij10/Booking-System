@@ -35,7 +35,13 @@ public class PaymentTransactionRepository {
 
     @Transactional
     public void delete(PaymentTransaction txn) {
-        PaymentTransaction managed = em.contains(txn) ? txn : em.merge(txn);
+        PaymentTransaction managed;
+        if(em.contains(txn)) {
+            managed=txn;
+        }
+        else {
+            managed=em.merge(txn);
+        }
         em.remove(managed);
     }
 }

@@ -35,7 +35,12 @@ public class ServiceEntityRepository {
 
     @Transactional
     public void delete(ServiceEntity service) {
-        ServiceEntity managed = em.contains(service) ? service : em.merge(service);
+        ServiceEntity managed;
+        if(em.contains(service)) {
+         managed = service;        }
+        else {
+            managed = em.merge(em.merge(service));
+        }
         em.remove(managed);
     }
 }

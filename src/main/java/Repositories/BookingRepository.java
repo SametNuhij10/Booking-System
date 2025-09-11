@@ -36,7 +36,12 @@ public class BookingRepository {
 
     @Transactional
     public void delete(Booking booking) {
-        Booking managed = em.contains(booking) ? booking : em.merge(booking);
+        Booking managed;
+        if (em.contains(booking)) {
+            managed = booking;
+        } else {
+            managed = em.merge(booking);
+        }
         em.remove(managed);
     }
 

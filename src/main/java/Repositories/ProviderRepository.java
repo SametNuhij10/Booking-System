@@ -33,9 +33,16 @@ public class ProviderRepository {
         return em.merge(provider);
     }
 
+
     @Transactional
     public void delete(Provider provider) {
-        Provider managed = em.contains(provider) ? provider : em.merge(provider);
+        Provider managed;
+        if(em.contains(provider)) {
+            managed=provider;
+        }
+        else {
+            managed=em.merge(provider);
+        }
         em.remove(managed);
     }
 }

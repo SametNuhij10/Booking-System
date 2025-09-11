@@ -35,7 +35,12 @@ public class CancellationRepository {
 
     @Transactional
     public void delete(Cancellation cancellation) {
-        Cancellation managed = em.contains(cancellation) ? cancellation : em.merge(cancellation);
+        Cancellation managed;
+        if (em.contains(cancellation)) {
+            managed = cancellation;
+        } else {
+            managed = em.merge(cancellation);
+        }
         em.remove(managed);
     }
 }

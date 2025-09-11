@@ -33,9 +33,16 @@ public class CustomerRepository {
         return em.merge(customer);
     }
 
+
     @Transactional
-    public void delete(Customer customer) {
-        Customer managed = em.contains(customer) ? customer : em.merge(customer);
+    public void delete(Customer customer){
+        Customer managed;
+        if(em.contains(customer)){
+            managed=customer;
+        }
+        else {
+            managed=em.merge(customer);
+        }
         em.remove(managed);
     }
 }

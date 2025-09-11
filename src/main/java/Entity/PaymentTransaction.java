@@ -22,7 +22,7 @@ public class PaymentTransaction {
     private LocalDate date;
 
     @Column(nullable = false, length = 20)
-    private String status; // e.g., SUCCESS, FAILED, PENDING
+    private String status;
 
     public PaymentTransaction() {}
 
